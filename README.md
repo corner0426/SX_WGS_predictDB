@@ -72,3 +72,22 @@ Manually replace quotations and add name for the 1st column
 
 
 
+### Genotype dosage file
+
+For SNPs selection, 1% MAF cutoff was applied (Yunlong did). Variants were filtered to remove any SNPs in high LD (R2 > 0.9)
+
+```shell
+# extract expression samples
+plink --noweb --bfile chrALL_1329_samples_MAF_0.01_new_beagle --keep ~/predictDB/original_files/keep_sample.txt --make-bed --out ~/predictDB/original_files/chrALL_75_samples_MAF_0.01_new_beagle
+
+cd ~/predictDB/original_files
+# LD based SNP pruning
+plink --noweb --bfile chrALL_75_samples_MAF_0.01_new_beagle --indep-pairwise 50 5 0.9
+plink --noweb --bfile chrALL_75_samples_MAF_0.01_new_beagle --extract plink.prune.in --recode --out chrALL_75_samples_MAF_0.01_new_beagle_LD0.9
+## 5865689 prune in
+## 1510792 prune out
+
+# from ped to dosage
+
+```
+
