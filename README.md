@@ -74,6 +74,8 @@ Manually replace quotations and add name for the 1st column
 
 ### Genotype dosage file
 
+* PLINK based LD prune
+
 For SNPs selection, 1% MAF cutoff was applied (Yunlong did). Variants were filtered to remove any SNPs in high LD (R2 > 0.9)
 
 ```shell
@@ -88,6 +90,14 @@ plink --noweb --bfile chrALL_75_samples_MAF_0.01_new_beagle --extract plink.prun
 ## 1510792 prune out
 
 # from ped to dosage
+'using VCF instead of ped'
+```
 
+* Generate file
+   The BEAGLE VCF format provides useful information to generate genotype dosage file and snp annotation file. `0|0 homozygote reference, dosage as 0; 0|1 heterozyote, dosage as 1`see [VCF format](https://faculty.washington.edu/browning/beagle/intro-to-vcf.html)
+
+```shell
+cd ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
+python ../../script/make_geno.py 
 ```
 
