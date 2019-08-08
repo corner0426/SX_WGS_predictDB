@@ -35,7 +35,7 @@ def parse_gtf(gtf_path, out_path):
             end = gene_fields[4]
             id = attr_dict['gene_id'].strip('"')
             name = attr_dict['gene_name'].strip('"')
-            type = attr_dict['gene_type'].strip('"')
+            type = attr_dict['gene_biotype'].strip('"').strip('";')
             # Concatenate together and write out to file.
             out_line = '\t'.join([chr, id, name, start, end, type]) + '\n'
             #借鉴这样的字符串连接写法
