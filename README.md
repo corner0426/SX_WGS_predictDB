@@ -72,9 +72,9 @@ Manually replace quotations and add name for the 1st column
 
 
 
-### Genotype dosage file
+### Genotype dosage file & SNP annotation file
 
-* PLINK based LD prune
+#### PLINK based LD prune
 
 For SNPs selection, 1% MAF cutoff was applied (Yunlong did). Variants were filtered to remove any SNPs in high LD (R2 > 0.9)
 
@@ -93,11 +93,18 @@ plink --noweb --bfile chrALL_75_samples_MAF_0.01_new_beagle --extract plink.prun
 'using VCF instead of ped'
 ```
 
-* Generate file
-   The BEAGLE VCF format provides useful information to generate genotype dosage file and snp annotation file. `0|0 homozygote reference, dosage as 0; 0|1 heterozyote, dosage as 1`see [VCF format](https://faculty.washington.edu/browning/beagle/intro-to-vcf.html)
+#### Generate files from VCF file
+* The BEAGLE VCF format provides useful information to generate genotype dosage file and snp annotation file. `0|0 homozygote reference, dosage as 0; 0|1 heterozyote, dosage as 1`, see [VCF format](https://faculty.washington.edu/browning/beagle/intro-to-vcf.html).
+* The genotype dosage file and SNP annotation file can be generated from the above VCF file. However, the original file is too big to deal with. So, I made the following strategies.
+  1. extract LD pruned SNPs with information including `chr and pos` from PLINK fam file - `make_pruned_snps.py`;
+  2. split the VCF file by chr, and excluded pruned out SNPs by the way - `split_vcf_by_chr.py`;
+  3. create the genotype dosage and SNP annotation file from the split VCF file (no needs to be combined) - `split_vcf_by_chr.py`
+  4. The above three steps were integrated into a calling script - `create_geno_snp_anno.py` 
 
 ```shell
+#store the make_pruned_snps.py split_vcf_by_chr.py split_vcf_by_chr.py into ~/predictDB/PredictDBPipeline/scripts
+#store the create_geno_snp_anno.py into ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
 cd ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
-python ../../script/make_geno.py 
+python create_geno_snp_anno.py 
 ```
 
