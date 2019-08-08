@@ -2,6 +2,8 @@
 
 '''
 Script to extract chr, ID, RS_ID for LD pruned SNPs from PLINK bim file
+
+The id format for each snp is '1_101', will use as index 
 '''
 
 SNP_lst=[]
