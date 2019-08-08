@@ -16,14 +16,18 @@ and vice-versa.
 
 '''
 
-##create list for pruned SNPs
-snp_lst = []
+##create dict for pruned SNPs, using chr as keys and index for downstream 
+snp_dict = {}
 print ('reading pruned snps')
-with open('/data1/yaoyh/predictDB/original_files/plink.prune.in', 'r') as snp_in:
+with open('/data1/yaoyh/predictDB/original_files/plink.prune.in.txt', 'r') as snp_in:
 	for line in snp_in:
-		line = line.strip('\n')
-		snp_lst.append(line)
-print ('The total number of included SNPs : %d' % len(snp_lst))
+		#line = line.strip('\n')
+		l = line.split()
+		#snp_lst.append(line)
+		snp_dict.setdefault(l[0], []).append(l[1])
+#print ('The total number of included SNPs : %d' % len(snp_lst))
+for i in snp_dict:
+	print ('The number of SNPs for chr{0} is {1}'.format(i,len(snp_dict[i])))
 
 def split_vcf(vcf_file, out_prefix):
 	# Make output file names from prefix.
@@ -44,11 +48,14 @@ def split_vcf(vcf_file, out_prefix):
 				for f in vcf_by_chr:
 					f.write(line)
 			chr = vcf_field[0].replace('chr', '')
-			rs_id = vcf_field[2]
-			if rs_id not in snp_lst: continue
+			snp_id = '%s_%s' % (chr, vcf_field[1])
+			#if rs_id not in snp_lst: continue
 			index = int(chr) - 1
-			vcf_by_chr[index].write(line)
-			
+			if snp_id in snp_dict[chr]:
+				vcf_by_chr[index].write(line)
+				
+	for f in vcf_by_chr:
+		f.close()
 					
 if __name__ == '__main__':
     vcf_file = sys.argv[1]
