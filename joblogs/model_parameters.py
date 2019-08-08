@@ -4,7 +4,7 @@ import os
 # Change these variables when adapting for different analyses.
 
 # List of identifiers for each database you'll make:
-STUDY_NAMES = ['gEUVADIS']
+STUDY_NAMES = ['sxjc']
 # File names for gene and snp annotation:
 GENE_ANNOTATION_FN = 'gencode.v12.genes.gtf'
 SNP_ANNOTATION_FN = 'geuvadis.annot.txt'
