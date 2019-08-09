@@ -11,8 +11,8 @@ argv <- commandArgs(trailingOnly = TRUE)
 file_head <- argv[1]
 
 for (i in 1:22) {
-  infile <- file_head %&% i %&% ".txt"
-  outfile <- file_head %&% i %&% ".RDS"
+  infile <- file_head %&% i %&% ".annot.txt"
+  outfile <- file_head %&% i %&% ".annot.RDS"
   snp_annot <- read.table(infile, stringsAsFactors = FALSE, header = TRUE)
   snp_annot <- unique(snp_annot)
   rownames(snp_annot) <- snp_annot$varID

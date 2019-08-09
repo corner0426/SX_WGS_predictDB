@@ -5,12 +5,12 @@ import subprocess
 from model_parameters import *
 
 # Process gene annotation----------------------------------------------/
-print("Parsing gene annotation...")
-subprocess.call(
-    ['../../scripts/parse_gtf.py',
-    INPUT_DIR + GENE_ANN_DIR + GENE_ANNOTATION_FN,
-    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER1
-    ])
+print("Parsing gene annotation - Done")
+#subprocess.call(
+#    ['../../scripts/parse_gtf.py',
+#    INPUT_DIR + GENE_ANN_DIR + GENE_ANNOTATION_FN,
+#    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER1
+#    ])
 print("Turning gene annotation into RDS object")
 subprocess.call(
     ['Rscript', '../../scripts/geno_annot_to_RDS.R',
@@ -20,24 +20,24 @@ subprocess.call(
 
 
 # Process snp annotation-----------------------------------------------/
-print("Splitting SNP annotation file up by chromosome...")
-subprocess.call(
-    ['../../scripts/split_snp_annot_by_chr.py',
-    INPUT_DIR + SNP_ANN_DIR + SNP_ANNOTATION_FN,
-    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX1
-    ])
+print("Splitting SNP annotation file up by chromosome - Done")
+#subprocess.call(
+#    ['../../scripts/split_snp_annot_by_chr.py',
+#    INPUT_DIR + SNP_ANN_DIR + SNP_ANNOTATION_FN,
+#    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX1
+#    ])
 print("Saving each snp annotation file as RDS object")
 subprocess.call(
     ['Rscript', '../../scripts/snp_annot_to_RDS.R',
     INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX2])
 
 # Process genotype files-----------------------------------------------/
-print("Splitting genotype files up by chromosome...")
-for i in range(len(GENOTYPE_FNS)):
-    subprocess.call(
-        ['../../scripts/split_genotype_by_chr.py',
-        INPUT_DIR + GENOTYPE_DIR + GENOTYPE_FNS[i],
-        INTER_DIR + GENOTYPE_DIR + GENOTYPE_INTER_PREFIX[i]])
+print("Splitting genotype files up by chromosome - Done")
+#for i in range(len(GENOTYPE_FNS)):
+#    subprocess.call(
+#        ['../../scripts/split_genotype_by_chr.py',
+#        INPUT_DIR + GENOTYPE_DIR + GENOTYPE_FNS[i],
+#        INTER_DIR + GENOTYPE_DIR + GENOTYPE_INTER_PREFIX[i]])
 
 # Process expression files---------------------------------------------/
 print("Transposing expression data and saving as RDS object...")

@@ -18,7 +18,7 @@ for i, study in enumerate(STUDY_NAMES):
     expression_RDS = INTER_DIR + EXPRESSION_DIR + EXPR_INTER[i]
     for chr in range(1,23):
         geno = INTER_DIR + GENOTYPE_DIR + GENOTYPE_INTER_PREFIX[i] + \
-            '.chr' + str(chr) + '.txt'
+            '.chr' + str(chr) + 'dosage.txt'
         snp_annot = INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX2 + str(chr) + '.RDS'
         cmd = CMD.format(study,expression_RDS,geno,gene_annot,snp_annot,
             N_K_FOLDS,ALPHA,MODEL_BY_CHR_DIR,str(chr),SNPSET,WINDOW)
@@ -31,7 +31,7 @@ for i, study in enumerate(STUDY_NAMES):
                     break
         FreeMem = int(free)/(1024.0*1024)
         while True:
-            if FreeMem > 25:		
+            if FreeMem > 10:		
                 subprocess.call(cmd, shell=True)
                 break
         time.sleep(2)
