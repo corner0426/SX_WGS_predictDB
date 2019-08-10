@@ -19,7 +19,7 @@ and vice-versa.
 ##create dict for pruned SNPs, using chr as keys and index for downstream 
 snp_dict = {}
 print ('reading pruned snps')
-with open('/data1/yaoyh/predictDB/original_files/plink.prune.in.txt', 'r') as snp_in:
+with open('/data1/yaoyh/predictDB/original_files/plink.prune.in_pd.txt', 'r') as snp_in:
 	for line in snp_in:
 		#line = line.strip('\n')
 		l = line.split()
@@ -47,7 +47,9 @@ def split_vcf(vcf_file, out_prefix):
 				vcf_header = line
 				for f in vcf_by_chr:
 					f.write(line)
-			chr = vcf_field[0].replace('chr', '')
+				continue
+			#chr = vcf_field[0].replace('chr', '')
+			chr = vcf_field[0][3:]
 			snp_id = '%s_%s' % (chr, vcf_field[1])
 			#if rs_id not in snp_lst: continue
 			index = int(chr) - 1

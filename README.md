@@ -96,7 +96,7 @@ plink --noweb --bfile chrALL_75_samples_MAF_0.01_new_beagle --extract plink.prun
 #### Generate files from VCF file
 * The BEAGLE VCF format provides useful information to generate genotype dosage file and snp annotation file. `0|0 homozygote reference, dosage as 0; 0|1 heterozyote, dosage as 1`, see [VCF format](https://faculty.washington.edu/browning/beagle/intro-to-vcf.html).
 * The genotype dosage file and SNP annotation file can be generated from the above VCF file. However, the original file is too big to deal with. So, I made the following strategies.
-  1. extract LD pruned SNPs with information including `chr and pos` from PLINK fam file - `make_pruned_snps.py`;
+  1. extract LD pruned SNPs with information including `chr and pos` from PLINK fam file - `make_pruned_snps.py`; (Note: using list to extract snp from large file is too slow, change the script that using pandas `make_prunded_snps_pd.py`)
   2. split the VCF file by chr, and excluded pruned out SNPs by the way - `split_vcf_by_chr.py`;
   3. create the genotype dosage and SNP annotation file from the split VCF file (no needs to be combined) - `split_vcf_by_chr.py`
   4. The above three steps were integrated into a calling script - `create_geno_snp_anno.py` 
