@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import subprocess
 
@@ -11,12 +11,12 @@ print("Parsing gene annotation - Done")
 #    INPUT_DIR + GENE_ANN_DIR + GENE_ANNOTATION_FN,
 #    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER1
 #    ])
-print("Turning gene annotation into RDS object")
-subprocess.call(
-    ['Rscript', '../../scripts/geno_annot_to_RDS.R',
-    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER1,
-    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER2
-    ])
+print("Turning gene annotation into RDS object - Done")
+#subprocess.call(
+#    ['Rscript', '../../scripts/geno_annot_to_RDS.R',
+#    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER1,
+#    INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER2
+#    ])
 
 
 # Process snp annotation-----------------------------------------------/
@@ -27,10 +27,10 @@ print("Splitting SNP annotation file up by chromosome - Done")
 #    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX1
 #    ])
 ## Have to wait create_geno_snp_anno.py done
-print("Saving each snp annotation file as RDS object")
-subprocess.call(
-    ['Rscript', '../../scripts/snp_annot_to_RDS.R',
-    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX2])
+print("Saving each snp annotation file as RDS object - Done")
+#subprocess.call(
+#    ['Rscript', '../../scripts/snp_annot_to_RDS.R',
+#    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX2])
 
 # Process genotype files-----------------------------------------------/
 print("Splitting genotype files up by chromosome - Done")
