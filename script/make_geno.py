@@ -24,7 +24,7 @@ def make_geno(vcf_file, gene_out_prefix, snp_anno_out_prefix):
 	snp_anno.write(snp_anno_header)
 
 	print ('reading VCF file')
-	with open(vcf, 'r') as vcf:
+	with open(vcf_file, 'r') as vcf:
 		for line in vcf:
 			#if line.startswith('##'): continue
 			vcf_field = line.split('\t')
@@ -33,12 +33,15 @@ def make_geno(vcf_file, gene_out_prefix, snp_anno_out_prefix):
 				geno_field = ['Id'] + [i for i in vcf_field[9:len(vcf_field)]]
 				geno_header = '\t'.join(geno_field)
 				geno.write(geno_header)
+				continue
 			
 			chr = vcf_field[0].replace('chr', '')
 			pos = vcf_field[1]
+			rs_id = vcf_field[2]
 			ref = vcf_field[3]
 			alt = vcf_field[4]
-			var_ID = '%s_%s_%s_%s_b37' % (chr, pos, ref, alt)
+			#var_ID = '%s_%s_%s_%s_b37' % (chr, pos, ref, alt)
+			var_ID = '%s_%s' % (chr, pos)
 			snp_anno.write('%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % (chr, pos, var_ID, ref, alt, var_ID, rs_id))
 			dosage_lst = []
 			dosage_lst.append(var_ID)
@@ -49,8 +52,7 @@ def make_geno(vcf_file, gene_out_prefix, snp_anno_out_prefix):
 if __name__ == '__main__':
     vcf_file = sys.argv[1]
     gene_out_prefix = sys.argv[2]
-	snp_anno_out_prefix = sys.argv[3]
-	
+    snp_anno_out_prefix = sys.argv[3]
     make_geno(vcf_file, gene_out_prefix, snp_anno_out_prefix)
 
 		

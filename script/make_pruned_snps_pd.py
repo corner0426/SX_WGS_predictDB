@@ -22,6 +22,7 @@ with open('/data/myl/WGS_Data_for_analysis/chrALL_1329_samples_MAF_0.01_new_beag
 		l = line.split()
 		chr = l[0]
 		pos = l[3]
+		#id = '%s_%s_%s_%s_b37' % (chr, pos, l[4], l[5])
 		id = '%s_%s' % (chr, pos)
 		rsid = l[1]
 		#if rsid in SNP_lst:

@@ -7,7 +7,7 @@ from model_parameters import *
 VCF_IN_DIR = '/data/myl/WGS_Data_for_analysis/'
 VCF_OUT_DIR = '../../../original_files/split_VCF/'
 VCF_FN = 'All_chr_1329_samples_gt_beagle.vcf'
-VCF_SPLIT_PREFIX = VCF_FN[:-3]  
+VCF_SPLIT_PREFIX = VCF_FN[:-4]  
 
 
 print("Extracting chr, ID, RS_ID for LD pruned SNPs from PLINK bim file...")
