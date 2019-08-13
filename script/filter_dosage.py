@@ -37,7 +37,7 @@ def filter_dosage(file_in_frefix, file_out_geno_prefix, file_out_anno_prefix, ch
 	'''
 	geno_in_fn = file_in_frefix + '.chr' + str(chr) + '.dosage.txt'
 	anno_in_fn = file_in_frefix + '.chr' + str(chr) + '.annot.txt'
-	geno_out_fn = file_out_geno_prefix + 'chr' + str(chr) + '.dosage.txt'
+	geno_out_fn = file_out_geno_prefix + '.chr' + str(chr) + '.dosage.txt'
 	anno_out_fn = file_out_anno_prefix + '.chr' + str(chr) + '.annot.txt'
 	
 	# genotype file
@@ -67,6 +67,8 @@ def filter_dosage(file_in_frefix, file_out_geno_prefix, file_out_anno_prefix, ch
 	print('filtering annot file %s' % (anno_in_fn))
 	annot_frame = pd.read_csv(anno_in_fn, sep = '\t')
 	annot_filter_snp_frame = annot_frame.loc[annot_frame['VariantID'].isin(snp_dict[str(chr)]),:]
+	print('writting annot file %s' % (anno_out_fn))
+	annot_filter_snp_frame.to_csv(anno_out_fn, index = False, sep = '\t')
 	
 	
 if __name__ == '__main__':

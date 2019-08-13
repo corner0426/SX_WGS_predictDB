@@ -40,9 +40,9 @@ print('Create genotype dosage file and snp annotation files without filter')
 #Note: no more '&', and Popen will submit cmd 
 #print(tesk)
 
-while True:
-	if sum(tesk) == 0:
-	break
+#while True:
+#	if sum(tesk) == 0:
+#	break
 
 
 	
@@ -50,14 +50,19 @@ print('Filter SNPs and samples for genotype file and SNPs for snp annotation fil
 tesk_2 = np.ones(22)
 for i in range(1,23):
 	file_in_frefix = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX
-	file_out_geno_prefix = INTER_DIR + GENOTYPE_DIR + STUDY_NAMES[0] + '.'
-	file_out_anno_prefix = INTER_DIR + SNP_ANN_DIR + STUDY_NAMES[0] + '.'
+	file_out_geno_prefix = INTER_DIR + GENOTYPE_DIR + STUDY_NAMES[0]
+	file_out_anno_prefix = INTER_DIR + SNP_ANN_DIR + STUDY_NAMES[0]
 	chr = i
 	CMD = 'python ../../scripts/filter_dosage.py {0} {1} {2} {3}'
 	cmd = CMD.format(file_in_frefix, file_out_geno_prefix, file_out_anno_prefix, chr)
-	p = subprocess.Popen(cmd, shell = True)
-	tesk_2[i-1] = p.poll()
-print(sum(tesk_2))
+	while True:
+		if FreeMem > 10:
+			p = subprocess.Popen(cmd, shell = True)
+			tesk_2[i-1] = p.poll()
+			break
+		else: 
+			print('waitting Memory filter_dosage chr%s' % (i))
+#print(sum(tesk_2))
 
 while True:
 	#print(tesk_2)
