@@ -27,32 +27,32 @@ print("Splitting a VCF file into multiple files by chromosome")
 #    ])
 	
 print('Create genotype dosage file and snp annotation files without filter')
-#tesk_1 = np.ones(22)
-#for i in range(1,23):
-#	vcf_file = VCF_OUT_DIR + VCF_SPLIT_PREFIX + '.chr' + str(i) + '.vcf'
-#	geno_file = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX + '.chr' + str(i) + '.'
-#	gene_anno_file = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX + '.chr' + str(i) + '.'
-#	CMD = 'python ../../scripts/make_geno.py {0} {1} {2}'
-#	cmd = CMD.format(vcf_file, geno_file, gene_anno_file)
-#	#tesk.append('')
-#	p = subprocess.Popen(cmd, shell = True)
-#	tesk_1[i-1] = p.poll()
+tesk_1 = np.ones(22)
+for i in range(1,23):
+	vcf_file = VCF_OUT_DIR + VCF_SPLIT_PREFIX + '.chr' + str(i) + '.vcf'
+	geno_file = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX + '.chr' + str(i) + '.'
+	gene_anno_file = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX + '.chr' + str(i) + '.'
+	CMD = 'python ../../scripts/make_geno.py {0} {1} {2}'
+	cmd = CMD.format(vcf_file, geno_file, gene_anno_file)
+	#tesk.append('')
+	p = subprocess.Popen(cmd, shell = True)
+	tesk_1[i-1] = p.poll()
 #Note: no more '&', and Popen will submit cmd 
 #print(tesk)
 
-#while True:
+while True:
 	#print(tesk_2)
-	#print('waitting dosage transfor run')
-#	if sum(tesk_1) == 0:
-#		print(tesk_1)
-#		print('filter_dosage.py is over')
-#		break
+	print('waitting dosage transfor run')
+	if sum(tesk_1) == 0:
+		print(tesk_1)
+		print('filter_dosage.py is over')
+		break
 
 
 	
 print('Filter SNPs and samples for genotype file and SNPs for snp annotation file')
 tesk_2 = np.ones(22)
-for i in range(1,4):
+for i in range(1,23):
 	file_in_frefix = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX
 	file_out_geno_prefix = INTER_DIR + GENOTYPE_DIR + STUDY_NAMES[0]
 	file_out_anno_prefix = INTER_DIR + SNP_ANN_DIR + STUDY_NAMES[0]
@@ -70,4 +70,4 @@ for i in range(1,4):
 #print(sum(tesk_2))
 
 
-#print("Genotype and SNP annotation file Done!")
+print("Genotype and SNP annotation file Done!")

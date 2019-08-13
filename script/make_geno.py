@@ -14,7 +14,7 @@ import sys
 
 ## SNP anno file write header
 #snp_anno = open(INPUT_DIR + SNP_ANN_DIR + 'sxjc.annot.txt', 'w')
-snp_anno_FIELDS = ['Chr', 'Pos', 'VariantID', 'Ref_b37', 'Alt', 'snp_id_originalVCF', 'RSID_dbSNP']
+snp_anno_FIELDS = ['chr', 'pos', 'varID', 'refAllele', 'effectAllele', 'snp_id_originalVCF', 'rsid']
 snp_anno_header = '\t'.join(snp_anno_FIELDS) + '\n'
 
 ##open VCF file
@@ -42,7 +42,7 @@ def make_geno(vcf_file, gene_out_prefix, snp_anno_out_prefix):
 			alt = vcf_field[4]
 			#var_ID = '%s_%s_%s_%s_b37' % (chr, pos, ref, alt)
 			var_ID = '%s_%s' % (chr, pos)
-			snp_anno.write('%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % (chr, pos, var_ID, ref, alt, var_ID, rs_id))
+			snp_anno.write('%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % (chr, pos, var_ID, ref, alt, rs_id, var_ID))
 			dosage_lst = []
 			dosage_lst.append(var_ID)
 			dosage_lst = dosage_lst + [str((int(dosage.split('|')[0]) + int(dosage.split('|')[1]))) for dosage in vcf_field[9:len(vcf_field)]]

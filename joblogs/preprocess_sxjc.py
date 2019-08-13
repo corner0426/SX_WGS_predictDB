@@ -28,9 +28,9 @@ print("Splitting SNP annotation file up by chromosome - Done")
 #    ])
 ## Have to wait create_geno_snp_anno.py done
 print("Saving each snp annotation file as RDS object - Done")
-#subprocess.call(
-#    ['Rscript', '../../scripts/snp_annot_to_RDS.R',
-#    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX2])
+subprocess.call(
+    ['Rscript', '../../scripts/snp_annot_to_RDS.R',
+    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX2])
 
 # Process genotype files-----------------------------------------------/
 print("Splitting genotype files up by chromosome - Done")
