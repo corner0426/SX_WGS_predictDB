@@ -13,10 +13,10 @@ GENOTYPE_FNS = ['sxjc.dosage.txt']
 EXPRESSION_FNS = ['sxjc.cpm.expr.txt']
 
 # Model metadata/parameters. Keep all as strings:
-SNPSET = 'HapMap'
+SNPSET = 'WGS_maf001_LD09'
 ALPHA = '0.5'
 N_K_FOLDS = '10'
-RSID_LABEL = 'RSID'
+RSID_LABEL = 'chr_pos'
 WINDOW = '1e6'
 
 # Leave everything below here as is------------------------------------/
@@ -27,7 +27,7 @@ GENE_ANNOT_INTER1 = GENE_ANNOTATION_FN[:-3] + 'parsed.txt'
 # File name of output for geno_annot_to_RDS.R:
 GENE_ANNOT_INTER2 = GENE_ANNOT_INTER1[:-3] + 'RDS'
 # File name prefix of outputs from split_snp_annot_by_chr.py:
-SNP_ANN_INTER_PREFIX1 = SNP_ANNOTATION_FN[:-9]#sxjc
+SNP_ANN_INTER_PREFIX1 = SNP_ANNOTATION_FN[:-10]#sxjc
 # File name prefix for input files to snp_annot_to_RDS.R:
 SNP_ANN_INTER_PREFIX2 = SNP_ANN_INTER_PREFIX1 + '.chr'
 # File name prefixes for output files from split_genotype_by_chr.py:

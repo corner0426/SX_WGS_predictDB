@@ -41,14 +41,18 @@ print('Create genotype dosage file and snp annotation files without filter')
 #print(tesk)
 
 #while True:
-#	if sum(tesk) == 0:
-#	break
+	#print(tesk_2)
+	#print('waitting dosage transfor run')
+#	if sum(tesk_1) == 0:
+#		print(tesk_1)
+#		print('filter_dosage.py is over')
+#		break
 
 
 	
 print('Filter SNPs and samples for genotype file and SNPs for snp annotation file')
 tesk_2 = np.ones(22)
-for i in range(1,23):
+for i in range(1,4):
 	file_in_frefix = DOSAGE_OUT_DIR + VCF_SPLIT_PREFIX
 	file_out_geno_prefix = INTER_DIR + GENOTYPE_DIR + STUDY_NAMES[0]
 	file_out_anno_prefix = INTER_DIR + SNP_ANN_DIR + STUDY_NAMES[0]
@@ -57,17 +61,13 @@ for i in range(1,23):
 	cmd = CMD.format(file_in_frefix, file_out_geno_prefix, file_out_anno_prefix, chr)
 	while True:
 		if FreeMem > 10:
-			p = subprocess.Popen(cmd, shell = True)
-			tesk_2[i-1] = p.poll()
+			subprocess.call(cmd, shell = True)
+			#memory consumption, single command once (about 20mim per run)
+			#tesk_2[i-1] = p.poll()
 			break
 		else: 
 			print('waitting Memory filter_dosage chr%s' % (i))
 #print(sum(tesk_2))
 
-while True:
-	#print(tesk_2)
-	if sum(tesk_2) == 0:
-		print(tesk_2)
-		print('filter_dosage.py is over')
-		break
+
 #print("Genotype and SNP annotation file Done!")

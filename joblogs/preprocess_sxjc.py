@@ -26,6 +26,7 @@ print("Splitting SNP annotation file up by chromosome - Done")
 #    INPUT_DIR + SNP_ANN_DIR + SNP_ANNOTATION_FN,
 #    INTER_DIR + SNP_ANN_DIR + SNP_ANN_INTER_PREFIX1
 #    ])
+## Have to wait create_geno_snp_anno.py done
 print("Saving each snp annotation file as RDS object")
 subprocess.call(
     ['Rscript', '../../scripts/snp_annot_to_RDS.R',
@@ -51,7 +52,7 @@ for i in range(len(EXPRESSION_FNS)):
 print("Creating metadata files...")
 for i in range(len(STUDY_NAMES)):
     command = ' '.join(['../../scripts/create_meta_data.py',
-        '--geno', INPUT_DIR + GENOTYPE_DIR + GENOTYPE_FNS[i],
+        '--geno', INPUT_DIR + GENOTYPE_DIR + 'sxjc.chr22.dosage.txt',
         '--expr', INPUT_DIR + EXPRESSION_DIR + EXPRESSION_FNS[i],
         '--snpset', SNPSET,
         '--alpha', ALPHA,
