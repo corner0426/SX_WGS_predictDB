@@ -109,3 +109,20 @@ cd ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
 python create_geno_snp_anno.py 
 ```
 
+
+
+## preprocessing 
+
+* Parsing gene annotation - Done
+* Turning gene annotation into RDS object - Done
+* Splitting SNP annotation file up by chromosome - No need
+* Saving each snp annotation file as RDS object
+* Splitting genotype files up by chromosome - No need
+* Transposing expression data and saving as RDS object - with covariate file
+* Creating metadata files
+
+```shell
+cd ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
+python2 preprocess_sxjc.py
+```
+

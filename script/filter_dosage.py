@@ -66,7 +66,7 @@ def filter_dosage(file_in_frefix, file_out_geno_prefix, file_out_anno_prefix, ch
 	# annotation file
 	print('filtering annot file %s' % (anno_in_fn))
 	annot_frame = pd.read_csv(anno_in_fn, sep = '\t')
-	annot_filter_snp_frame = annot_frame.loc[annot_frame['VariantID'].isin(snp_dict[str(chr)]),:]
+	annot_filter_snp_frame = annot_frame.loc[annot_frame['varID'].isin(snp_dict[str(chr)]),:]
 	print('writting annot file %s' % (anno_out_fn))
 	annot_filter_snp_frame.to_csv(anno_out_fn, index = False, sep = '\t')
 	

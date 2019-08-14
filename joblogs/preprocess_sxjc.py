@@ -46,7 +46,8 @@ for i in range(len(EXPRESSION_FNS)):
     subprocess.call(
         ['Rscript', '../../scripts/expr_to_transposed_RDS.R',
         INPUT_DIR + EXPRESSION_DIR + EXPRESSION_FNS[i],
-        INTER_DIR + EXPRESSION_DIR + EXPR_INTER[i]])
+        INTER_DIR + EXPRESSION_DIR + EXPR_INTER[i],
+		INPUT_DIR + EXPRESSION_DIR + COVARIATE_FNS[i]])
 
 # Create metadata files------------------------------------------------/
 print("Creating metadata files...")

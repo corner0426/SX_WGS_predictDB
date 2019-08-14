@@ -11,6 +11,7 @@ SNP_ANNOTATION_FN = 'sxjc.annot.txt'
 # List of genotype/expression file names:
 GENOTYPE_FNS = ['sxjc.dosage.txt']
 EXPRESSION_FNS = ['sxjc.cpm.expr.txt']
+COVARIATE_FNS = ['sxjc.covariate.txt']
 
 # Model metadata/parameters. Keep all as strings:
 SNPSET = 'WGS_maf001_LD09'
