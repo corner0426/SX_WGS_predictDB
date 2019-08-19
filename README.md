@@ -32,7 +32,7 @@ mkdir -pv \
     ../../data/output/dbs/ \
 ```
 
-### gene annotation file
+### Gene annotation file
 
 In gtf format, originating from RNA-seq  pipeline. Only `gene` remained. `GRCh38`
 
@@ -111,7 +111,7 @@ python create_geno_snp_anno.py
 
 
 
-## preprocessing 
+## Preprocessing 
 
 * Parsing gene annotation - Done
 * Turning gene annotation into RDS object - Done
@@ -124,5 +124,14 @@ python create_geno_snp_anno.py
 ```shell
 cd ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
 python2 preprocess_sxjc.py
+```
+
+## Train model
+
+`Directly execute create_model.R by train_models_local.py `
+
+```shell
+cd ~/predictDB/PredictDBPipeline/joblogs/SX_WGS_predictDB
+python2 train_models_local.py
 ```
 

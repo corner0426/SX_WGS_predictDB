@@ -15,9 +15,9 @@ COVARIATE_FNS = ['sxjc.covariate.txt']
 
 # Model metadata/parameters. Keep all as strings:
 SNPSET = 'WGS_maf001_LD09'
-ALPHA = '0.5'
+ALPHA = '0.6'
 N_K_FOLDS = '10'
-RSID_LABEL = 'chr_pos'
+RSID_LABEL = 'rsid'
 WINDOW = '1e6'
 
 # Leave everything below here as is------------------------------------/
