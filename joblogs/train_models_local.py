@@ -15,7 +15,8 @@ CMD = 'Rscript ./create_model.R {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}'
 
 
 gene_annot = INTER_DIR + GENE_ANN_DIR + GENE_ANNOT_INTER2
-tesk_1 = np.ones(22)
+
+P = ['' for _ in range(22)]
 for i, study in enumerate(STUDY_NAMES):
     expression_RDS = INTER_DIR + EXPRESSION_DIR + EXPR_INTER[i]
     for chr in range(1,23):
@@ -26,20 +27,34 @@ for i, study in enumerate(STUDY_NAMES):
             N_K_FOLDS,ALPHA,MODEL_BY_CHR_DIR,str(chr),SNPSET,WINDOW)
 	    #cmd = CMD.format(study,expression_RDS,geno,gene_annot,snp_annot,N_K_FOLDS,ALPHA,MODEL_BY_CHR_DIR,str(chr),SNPSET,WINDOW)
         print(cmd)
-        #with open('/proc/meminfo') as fd:
-        #    for line in fd:
-        #        if line.startswith('MemFree'):
-        #            free = line.split()[1]
-        #            break
-        #FreeMem = int(free)/(1024.0*1024)
+#        with open('/proc/meminfo') as fd:
+#            for line in fd:
+#                if line.startswith('MemFree'):
+#                    free = line.split()[1]
+#                    break
+#        FreeMem = int(free)/(1024.0*1024)
         while True:
+            with open('/proc/meminfo') as fd:
+                for line in fd:
+                    if line.startswith('MemFree'):
+                        free = line.split()[1]
+            FreeMem = int(free)/(1024.0*1024)
             if FreeMem > 5:		
                 p = subprocess.Popen(cmd, shell=True)
-                tesk_1[chr-1] = p.poll()
-                print(tesk_1)
+                #tesk_1[chr-1] = p.poll()
+                #print(tesk_1)
+                P[chr-1] = p
                 break
             else:
                 print('FreeMem %f' % FreeMem)				
         time.sleep(2)
-print(tesk_1)
-print('train model done')
+#print(tesk_1)
+tesk_1 = np.ones(22)
+while True:
+	for chr in range(1,23):
+		tesk_1[chr-1] = P[chr-1].poll()
+		#print(tesk_1)
+	if sum(tesk_1) == 0:
+		print(tesk_1)
+		print('train model done')
+		break

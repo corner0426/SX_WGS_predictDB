@@ -41,13 +41,13 @@ print("Splitting genotype files up by chromosome - Done")
 #        INTER_DIR + GENOTYPE_DIR + GENOTYPE_INTER_PREFIX[i]])
 
 # Process expression files---------------------------------------------/
-print("Transposing expression data and saving as RDS object...")
-for i in range(len(EXPRESSION_FNS)):
-    subprocess.call(
-        ['Rscript', '../../scripts/expr_to_transposed_RDS.R',
-        INPUT_DIR + EXPRESSION_DIR + EXPRESSION_FNS[i],
-        INTER_DIR + EXPRESSION_DIR + EXPR_INTER[i],
-		INPUT_DIR + EXPRESSION_DIR + COVARIATE_FNS[i]])
+print("Transposing expression data and saving as RDS object - Done")
+#for i in range(len(EXPRESSION_FNS)):
+#    subprocess.call(
+#        ['Rscript', '../../scripts/expr_to_transposed_RDS.R',
+#        INPUT_DIR + EXPRESSION_DIR + EXPRESSION_FNS[i],
+#        INTER_DIR + EXPRESSION_DIR + EXPR_INTER[i],
+#		INPUT_DIR + EXPRESSION_DIR + COVARIATE_FNS[i]])
 
 # Create metadata files------------------------------------------------/
 print("Creating metadata files...")
